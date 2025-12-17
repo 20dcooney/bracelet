@@ -188,8 +188,8 @@ public class BraceletList<T> extends Bracelet1<T> implements Bracelet<T> {
 
         for (int i = 0; i < n; i++) {
 
-            if (this.pointer.next.data == (null)) {
-                this.pointer = this.pointer.next.next;
+            if (this.pointer.equals(this.end)) {
+                this.pointer = this.pointer.next.next.next;
             } else {
                 this.pointer = this.pointer.next;
             }

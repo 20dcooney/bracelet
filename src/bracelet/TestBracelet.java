@@ -43,10 +43,10 @@ public class TestBracelet {
             numberBracelet.movePointerRight();
         }
 
-        int removedItem = numberBracelet.removeNthNextItem(14);
-
-        System.out.println("Removed item: " + removedItem);
-        System.out.println(numberBracelet.toString());
+//        int removedItem = numberBracelet.removeNthNextItem(14);
+//
+//        System.out.println("Removed item: " + removedItem);
+//        System.out.println(numberBracelet.toString());
 
     }
 }

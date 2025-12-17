@@ -32,6 +32,51 @@ public class Bracelet1<T> implements BraceletKernel<T> {
          */
         public Node next;
 
+        /**
+         * Compares this with another node to check for equality.
+         *
+         * @param n
+         *            The node to be compared
+         * @return [Equality of the two nodes]
+         */
+        public boolean equals(Node n) {
+            boolean isEqual = true;
+
+            try {
+
+                if (!this.data.equals(n.data)) {
+                    isEqual = false;
+                }
+            } catch (NullPointerException e) {
+                System.err.println(e.getMessage());
+                if (this.data != null && n.data != null) {
+                    isEqual = false;
+                }
+            }
+            try {
+                if (!this.next.data.equals(n.next.data)) {
+                    isEqual = false;
+                }
+            } catch (NullPointerException e) {
+                System.err.println(e.getMessage());
+                if (this.next.data != null && n.next.data != null) {
+                    isEqual = false;
+                }
+            }
+            try {
+                if (!this.prev.data.equals(n.prev.data)) {
+                    isEqual = false;
+                }
+            } catch (NullPointerException e) {
+                System.err.println(e.getMessage());
+                if (this.prev.data != null && n.prev.data != null) {
+                    isEqual = false;
+                }
+            }
+            return isEqual;
+            //TODO - potentially remove this method.
+        }
+
     }
 
     public Node front;
@@ -62,6 +107,12 @@ public class Bracelet1<T> implements BraceletKernel<T> {
         this.pointer = this.front;
 
         this.length = 0;
+
+        /*
+         * TODO - Experiment with major ways to change the structure of this
+         * loop. Removing the front and end nodes and directly connecting the
+         * "front" and "end" will remove nullpointer issues.
+         */
     }
 
     @Override
