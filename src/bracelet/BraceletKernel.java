@@ -52,4 +52,11 @@ public interface BraceletKernel<T> {
      */
     int length();
 
+    /**
+     * Clears all objects from this.
+     *
+     * @ensures this = <>
+     */
+    void clear();
+
 }

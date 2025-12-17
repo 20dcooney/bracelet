@@ -128,4 +128,9 @@ public class Bracelet1<T> implements BraceletKernel<T> {
         return this.length;
     }
 
+    @Override
+    public void clear() {
+        this.createNewRep();
+    }
+
 }
