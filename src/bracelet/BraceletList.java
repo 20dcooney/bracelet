@@ -153,7 +153,8 @@ public class BraceletList<T> extends Bracelet1<T> implements Bracelet<T> {
     @Override
     public String toString() {
 
-        String printString = "Items contained in bracelet: ";
+        String printString = (this.length() > 0) ? "Items contained in bracelet: "
+                : "This bracelet is currently empty.";
 
         this.movePointerToFront();
 
@@ -200,7 +201,9 @@ public class BraceletList<T> extends Bracelet1<T> implements Bracelet<T> {
 
         this.movePointerToFront();
 
-        for (int i = 0; i < this.length(); i++) {
+        int count = this.length();
+
+        for (int i = 0; i < count; i++) {
             returnList.add(this.remove());
         }
 

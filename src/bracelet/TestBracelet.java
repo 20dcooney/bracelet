@@ -1,5 +1,7 @@
 package bracelet;
 
+import java.util.List;
+
 /**
  * A test class for the Bracelet data type. This is a temporary test class, and
  * a more comprehensive and complete JUnit test class will be made in the
@@ -49,6 +51,15 @@ public class TestBracelet {
 
         System.out.println("Removed item: " + removedItem);
         System.out.println(numberBracelet.toString());
+
+        List<Integer> testList = numberBracelet.flatten();
+        System.out.println("Flattening Bracelet into an ArrayList...");
+
+        System.out.println(numberBracelet.toString());
+        System.out.println(testList.toString());
+        System.out.println();
+        List<String> stringList = bracelet.flatten();
+        System.out.print(stringList.toString());
 
     }
 }
