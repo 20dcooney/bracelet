@@ -1,0 +1,7 @@
+TODO LIST
+---------
+
+* Now that Bracelet1's implementations of movePointerLeft and movePointerRight
+ have been fundamentally changed to properly handle the front and end nodes,
+ revise all secondary methods for potential optimizations
+  (use movePointerLeft and movePointerRight as opposed to manually handling)
