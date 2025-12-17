@@ -138,15 +138,13 @@ public class BraceletList<T> extends Bracelet1<T> implements Bracelet<T> {
         return returnObj;
     }
 
-    @Override
-    public void movePointerToFront() {
+    private void movePointerToFront() {
 
         this.pointer = this.front;
 
     }
 
-    @Override
-    public void movePointerToEnd() {
+    private void movePointerToEnd() {
 
         this.pointer = this.end;
 
@@ -178,7 +176,6 @@ public class BraceletList<T> extends Bracelet1<T> implements Bracelet<T> {
         return this.pointer;
     }
 
-    //TODO - Correctly handle looping from end to front
     @Override
     public T removeNthNextItem(int n) {
 
@@ -186,13 +183,8 @@ public class BraceletList<T> extends Bracelet1<T> implements Bracelet<T> {
 
         Node storeNode = this.storePosition();
 
-        for (int i = 0; i < n; i++) {
-
-            if (this.pointer.equals(this.end)) {
-                this.pointer = this.pointer.next.next.next;
-            } else {
-                this.pointer = this.pointer.next;
-            }
+        for (int i = 0; i < n - 1; i++) {
+            this.movePointerRight();
         }
 
         T returnObj = this.remove();

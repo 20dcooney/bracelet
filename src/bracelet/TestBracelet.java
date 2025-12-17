@@ -39,14 +39,16 @@ public class TestBracelet {
 
         System.out.println(numberBracelet.toString());
 
-        for (int i = 1; i <= 3; i++) {
+        for (int i = 1; i <= 6; i++) {
             numberBracelet.movePointerRight();
         }
 
-//        int removedItem = numberBracelet.removeNthNextItem(14);
-//
-//        System.out.println("Removed item: " + removedItem);
-//        System.out.println(numberBracelet.toString());
+        //numberBracelet.movePointerToEnd();
+
+        int removedItem = numberBracelet.removeNthNextItem(1);
+
+        System.out.println("Removed item: " + removedItem);
+        System.out.println(numberBracelet.toString());
 
     }
 }

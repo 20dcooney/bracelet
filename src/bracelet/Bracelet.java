@@ -42,8 +42,8 @@ public interface Bracelet<T> extends BraceletKernel<T> {
 
     T pollPosition(int pos);
 
-    void movePointerToFront();
-
-    void movePointerToEnd();
+//    void movePointerToFront();
+//
+//    void movePointerToEnd();
 
 }
