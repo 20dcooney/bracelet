@@ -61,5 +61,7 @@ public class TestBracelet {
         List<String> stringList = bracelet.flatten();
         System.out.print(stringList.toString());
 
+        Bracelet newBracelet = new BraceletList<>();
+
     }
 }

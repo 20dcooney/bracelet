@@ -18,6 +18,8 @@ public class BraceletList<T> extends Bracelet1<T> implements Bracelet<T> {
     @Override
     public T removeFromFront() {
 
+        assert this.length() > 0 : "Violation of: |this| > 0";
+
         Node storeNode = this.storePosition();
 
         this.movePointerToFront();
