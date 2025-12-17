@@ -1,7 +1,9 @@
 package bracelet;
 
 /**
- * A test class for the Bracelet data type.
+ * A test class for the Bracelet data type. This is a temporary test class, and
+ * a more comprehensive and complete JUnit test class will be made in the
+ * future.
  *
  * @author David Cooney
  */
@@ -16,5 +18,18 @@ public class TestBracelet {
         bracelet.add("Hi Mini!");
 
         bracelet.add("Hi Lynxsys!");
+
+        System.out.println(bracelet.toString());
+
+        String testingRemove = bracelet.removeFromEnd();
+
+        System.out.println("Removed item: " + testingRemove);
+        System.out.println(bracelet.toString());
+
+        String stringToAddToEnd = "Hello Twin!";
+        bracelet.addToEnd(stringToAddToEnd);
+        System.out.println("Adding following item to end: " + stringToAddToEnd);
+        System.out.println(bracelet.toString());
+
     }
 }

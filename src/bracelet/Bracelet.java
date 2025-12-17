@@ -23,9 +23,12 @@ public interface Bracelet<T> extends BraceletKernel<T> {
      *
      * @param x
      *            The object to be removed.
+     * @requires [x is in this]
      * @ensures this = [#this with x removed]
+     *
+     * @returns [Object data in the given node]
      */
-    void removeEntry(T x);
+    T removeEntry(T x);
 
     T pollFront();
 

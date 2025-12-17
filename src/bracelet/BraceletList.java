@@ -5,66 +5,175 @@ public class BraceletList<T> extends Bracelet1<T> implements Bracelet<T> {
     @Override
     public void addToFront(T x) {
 
+        Node storeNode = this.storePosition();
+
+        this.movePointerToFront();
+        this.add(x);
+
+        this.pointer = storeNode;
     }
 
     @Override
     public T removeFromFront() {
-        // TODO Auto-generated method stub
-        return null;
+
+        Node storeNode = this.storePosition();
+
+        this.movePointerToFront();
+
+        T returnObject = this.remove();
+
+        this.pointer = storeNode;
+
+        return returnObject;
     }
 
     @Override
     public void addToEnd(T x) {
-        // TODO Auto-generated method stub
 
+        Node storeNode = this.storePosition();
+
+        this.movePointerToEnd();
+        this.pointer = this.pointer.prev;
+        this.add(x);
+
+        this.pointer = storeNode;
     }
 
     @Override
     public T removeFromEnd() {
-        // TODO Auto-generated method stub
-        return null;
+
+        assert this.length() > 0 : "Violation of: |this| > 0";
+
+        Node storeNode = this.storePosition();
+
+        this.movePointerToEnd();
+        this.pointer = this.pointer.prev.prev;
+
+        T returnObject = this.remove();
+
+        this.pointer = storeNode;
+
+        return returnObject;
     }
 
     @Override
-    public void removeEntry(T x) {
-        // TODO Auto-generated method stub
+    public T removeEntry(T x) {
+
+        assert this.length() > 0 : "Violation of: |this| > 0";
+
+        T returnObj = null;
+
+        Node storeNode = this.storePosition();
+        this.movePointerToFront();
+
+        for (int i = 0; i < this.length(); i++) {
+            if (this.pointer.next.data.equals(x)) {
+                returnObj = this.remove();
+                break;
+            } else {
+                this.pointer = this.pointer.next;
+            }
+        }
+
+        assert returnObj != null : "Violation of: x is in this";
+
+        this.pointer = storeNode;
+
+        return returnObj;
 
     }
 
     @Override
     public T pollFront() {
-        // TODO Auto-generated method stub
-        return null;
+
+        assert this.length() > 0 : "Violation of: |this| > 0";
+
+        Node storeNode = this.storePosition();
+
+        this.movePointerToFront();
+
+        T returnObject = this.pointer.next.data;
+
+        this.pointer = storeNode;
+
+        return returnObject;
+
     }
 
     @Override
     public T pollEnd() {
-        // TODO Auto-generated method stub
-        return null;
+
+        assert this.length() > 0 : "Violation of: |this| > 0";
+
+        Node storeNode = this.storePosition();
+
+        this.movePointerToEnd();
+
+        T returnObject = this.pointer.prev.data;
+
+        this.pointer = storeNode;
+
+        return returnObject;
+
     }
 
     @Override
     public T pollPosition(int pos) {
-        // TODO Auto-generated method stub
-        return null;
+
+        assert this.length() > 0 : "Violation of: |this| > 0";
+
+        Node storeNode = this.storePosition();
+
+        this.movePointerToFront();
+
+        for (int i = 0; i < this.length(); i++) {
+            this.pointer = this.pointer.next;
+        }
+
+        T returnObj = this.pointer.next.data;
+        this.pointer = storeNode;
+
+        return returnObj;
     }
 
     @Override
     public void movePointerToFront() {
-        // TODO Auto-generated method stub
+
+        this.pointer = this.front;
 
     }
 
     @Override
     public void movePointerToEnd() {
-        // TODO Auto-generated method stub
+
+        this.pointer = this.end;
 
     }
 
     @Override
     public String toString() {
 
-        return "";
+        String printString = "Items contained in bracelet: ";
+
+        this.movePointerToFront();
+
+        for (int i = 0; i < this.length(); i++) {
+
+            printString += this.pointer.next.data;
+
+            if (this.length() - i > 1) {
+                printString += ", ";
+            }
+
+            this.pointer = this.pointer.next;
+
+        }
+        return printString;
+    }
+
+    private Node storePosition() {
+
+        return this.pointer;
     }
 
 }

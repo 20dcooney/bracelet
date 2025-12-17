@@ -7,38 +7,38 @@ package bracelet;
  *
  * @param <T>
  *            The type of {@code Bracelet} entries
- * 
+ *
  * @author David Cooney
  */
 public class Bracelet1<T> implements BraceletKernel<T> {
 
     /**
-     * Node class for singly linked list nodes.
+     * Node class for doubly linked list nodes.
      */
-    private final class Node {
+    public final class Node {
 
         /**
          * Data in node.
          */
-        private T data;
+        public T data;
 
         /**
          * Previous node in doubly linked list, or null.
          */
-        private Node prev;
+        public Node prev;
 
         /**
          * Next node in doubly linked list, or null.
          */
-        private Node next;
+        public Node next;
 
     }
 
-    private Node front;
+    public Node front;
 
-    private Node end;
+    public Node end;
 
-    private Node pointer;
+    public Node pointer;
 
     private int length;
 
@@ -67,8 +67,11 @@ public class Bracelet1<T> implements BraceletKernel<T> {
     @Override
     public void add(T x) {
 
-        assert x.getClass().equals(this.getClass())
-                : "Violation of: x is the same type as contained in this";
+        //TODO - Fix this assertion
+        /*
+         * assert x.getClass().equals(this.getClass()) :
+         * "Violation of: x is the same type as contained in this";
+         */
 
         Node nodeToAdd = new Node();
         nodeToAdd.data = x;
@@ -78,6 +81,8 @@ public class Bracelet1<T> implements BraceletKernel<T> {
 
         this.pointer.next.prev = nodeToAdd;
         this.pointer.next = nodeToAdd;
+
+        this.pointer = this.pointer.next;
 
         this.length++;
 
