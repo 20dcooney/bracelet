@@ -29,15 +29,6 @@ public interface BraceletKernel<T> {
     T remove();
 
     /**
-     * Removes requested object from the Bracelet.
-     *
-     * @param x
-     *            The object to be removed.
-     * @ensures this = [#this with x removed]
-     */
-    void removeEntry(T x);
-
-    /**
      * Advance the pointer one position to the left.
      *
      * @requires |[left-side of pointer]| > 0

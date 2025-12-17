@@ -1,5 +1,15 @@
 package bracelet;
 
+/**
+ * Implementation of BraceletKernel interface.
+ *
+ * A circular doubly-linked list.
+ *
+ * @param <T>
+ *            The type of {@code Bracelet} entries
+ * 
+ * @author David Cooney
+ */
 public class Bracelet1<T> implements BraceletKernel<T> {
 
     /**
@@ -39,15 +49,17 @@ public class Bracelet1<T> implements BraceletKernel<T> {
     private void createNewRep() {
 
         this.front = new Node();
-
         this.end = new Node();
 
-        this.front.prev = this.end;
+        //Links the front and end
+        this.front.next = this.end;
+        this.end.prev = this.front;
 
+        //Creates the "repeating loop" with the front and end
+        this.front.prev = this.end;
         this.end.next = this.front;
 
-        this.pointer.prev = this.front;
-        this.pointer.next = this.end;
+        this.pointer = this.front;
 
         this.length = 0;
     }
@@ -58,13 +70,14 @@ public class Bracelet1<T> implements BraceletKernel<T> {
         assert x.getClass().equals(this.getClass())
                 : "Violation of: x is the same type as contained in this";
 
-        Node temp = new Node();
+        Node nodeToAdd = new Node();
+        nodeToAdd.data = x;
 
-        temp.data = x;
-        temp.prev = this.pointer.prev;
-        temp.next = this.pointer.next;
+        nodeToAdd.prev = this.pointer;
+        nodeToAdd.next = this.pointer.next;
 
-        this.pointer.next = temp;
+        this.pointer.next.prev = nodeToAdd;
+        this.pointer.next = nodeToAdd;
 
         this.length++;
 
@@ -74,33 +87,34 @@ public class Bracelet1<T> implements BraceletKernel<T> {
     public T remove() {
         assert this.length > 0 : "Violation of: |this| > 0";
 
-        Node removedNode = this.pointer.next;
+        T returnObj = this.pointer.next.data;
 
-        return null;
-    }
+        this.pointer.next.next.prev = this.pointer;
+        this.pointer.next = this.pointer.next.next;
 
-    @Override
-    public void removeEntry(T x) {
-        // TODO Auto-generated method stub
+        this.length--;
 
+        return returnObj;
     }
 
     @Override
     public void movePointerLeft() {
-        // TODO Auto-generated method stub
+
+        this.pointer = this.pointer.next;
 
     }
 
     @Override
     public void movePointerRight() {
-        // TODO Auto-generated method stub
+
+        this.pointer = this.pointer.prev;
 
     }
 
     @Override
     public int length() {
-        // TODO Auto-generated method stub
-        return 0;
+
+        return this.length;
     }
 
 }
