@@ -1,5 +1,7 @@
 package bracelet;
 
+import java.util.List;
+
 /**
  * Bracelet interface.
  *
@@ -30,6 +32,10 @@ public interface Bracelet<T> extends BraceletKernel<T> {
      */
     T removeEntry(T x);
 
+    T removeNthNextItem(int n);
+
+    List<T> flatten();
+
     T pollFront();
 
     T pollEnd();
@@ -39,4 +45,5 @@ public interface Bracelet<T> extends BraceletKernel<T> {
     void movePointerToFront();
 
     void movePointerToEnd();
+
 }

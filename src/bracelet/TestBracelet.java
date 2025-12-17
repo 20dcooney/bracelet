@@ -31,5 +31,13 @@ public class TestBracelet {
         System.out.println("Adding following item to end: " + stringToAddToEnd);
         System.out.println(bracelet.toString());
 
+        Bracelet<Integer> numberBracelet = new BraceletList<>();
+
+        for (int i = 1; i <= 10; i++) {
+            numberBracelet.add(i);
+        }
+
+        System.out.println(numberBracelet.toString());
+
     }
 }

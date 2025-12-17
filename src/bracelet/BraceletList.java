@@ -1,5 +1,7 @@
 package bracelet;
 
+import java.util.ArrayList;
+
 public class BraceletList<T> extends Bracelet1<T> implements Bracelet<T> {
 
     @Override
@@ -174,6 +176,42 @@ public class BraceletList<T> extends Bracelet1<T> implements Bracelet<T> {
     private Node storePosition() {
 
         return this.pointer;
+    }
+
+    @Override
+    public T removeNthNextItem(int n) {
+
+        assert this.length() > 0 : "Violation of: |this| > 0";
+
+        Node storeNode = this.storePosition();
+
+        for (int i = 0; i < this.length(); i++) {
+
+            if (this.pointer.next.equals(this.end)) {
+                this.pointer = this.pointer.next.next;
+            } else {
+                this.pointer = this.pointer.next;
+            }
+        }
+
+        T returnObj = this.remove();
+        this.pointer = storeNode;
+
+        return returnObj;
+    }
+
+    @Override
+    public ArrayList<T> flatten() {
+
+        ArrayList<T> returnList = new ArrayList<>();
+
+        this.movePointerToFront();
+
+        for (int i = 0; i < this.length(); i++) {
+            returnList.add(this.remove());
+        }
+
+        return returnList;
     }
 
 }
