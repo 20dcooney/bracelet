@@ -150,6 +150,10 @@ public class BraceletList<T> extends Bracelet1<T> implements Bracelet<T> {
             this.movePointerRight();
         }
 
+        if (this.pointer.next.data == null) {
+            this.movePointerToFront();
+        }
+
         T returnObj = this.pointer.next.data;
         this.pointer = storeNode;
 
