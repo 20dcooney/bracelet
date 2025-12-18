@@ -110,6 +110,11 @@ public class Bracelet1<T> implements BraceletKernel<T> {
     public T remove() {
         assert this.length > 0 : "Violation of: |this| > 0";
 
+        //ALERT this is a big fundamental change to the entire Bracelet, ensure all methods work as intended
+        if (this.pointer.next.data == null) {
+            this.pointer = this.front;
+        }
+
         T returnObj = this.pointer.next.data;
 
         this.pointer.next.next.prev = this.pointer;

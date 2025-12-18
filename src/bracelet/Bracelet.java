@@ -108,7 +108,7 @@ public interface Bracelet<T> extends BraceletKernel<T> {
 
     /**
      * Determines the object held at the {@code pos} position of this and
-     * returns it.
+     * returns it. Begins at index 1.
      *
      * @param pos
      *            The position to poll from

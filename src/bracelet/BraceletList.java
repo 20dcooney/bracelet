@@ -130,6 +130,13 @@ public class BraceletList<T> extends Bracelet1<T> implements Bracelet<T> {
 
     }
 
+    /*
+     * TODO - Change the name of current "pollPosition" to "pollNthPosition".
+     *
+     * Create a new "pollPosition" that polls the position to the right of the
+     * pointer.
+     */
+
     @Override
     public T pollPosition(int pos) {
 
@@ -139,8 +146,8 @@ public class BraceletList<T> extends Bracelet1<T> implements Bracelet<T> {
 
         this.movePointerToFront();
 
-        for (int i = 0; i < this.length(); i++) {
-            this.pointer = this.pointer.next;
+        for (int i = 1; i < pos; i++) {
+            this.movePointerRight();
         }
 
         T returnObj = this.pointer.next.data;
@@ -183,6 +190,13 @@ public class BraceletList<T> extends Bracelet1<T> implements Bracelet<T> {
         return printString;
     }
 
+    /**
+     * Returns the {@code pointer}'s current position. Intended for storing the
+     * current position in order to restore the {@code pointer} after performing
+     * an action.
+     *
+     * @return [The current {@code pointer}]
+     */
     private Node storePosition() {
 
         return this.pointer;
@@ -197,11 +211,6 @@ public class BraceletList<T> extends Bracelet1<T> implements Bracelet<T> {
 
         for (int i = 0; i < n - 1; i++) {
             this.movePointerRight();
-        }
-
-        //Handling for if the first object in bracelet is the object to be removed.
-        if (this.pointer.next.data == null) {
-            this.movePointerToFront();
         }
 
         T returnObj = this.remove();
