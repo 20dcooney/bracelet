@@ -47,7 +47,7 @@ public class TestBracelet {
 
         //numberBracelet.movePointerToEnd();
 
-        int removedItem = numberBracelet.removeNthNextItem(1);
+        int removedItem = numberBracelet.removeNthNextItem(15);
 
         System.out.println("Removed item: " + removedItem);
         System.out.println(numberBracelet.toString());
@@ -63,12 +63,11 @@ public class TestBracelet {
 
         System.out.println();
 
-        Bracelet newBracelet = new BraceletList<>();
+        Bracelet<String> newBracelet = new BraceletList<>();
         newBracelet.add("Testing clear method");
         newBracelet.add("The next printline should be empty");
         System.out.println(newBracelet.toString());
         newBracelet.clear();
         System.out.println(newBracelet.toString());
-
     }
 }

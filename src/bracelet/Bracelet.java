@@ -3,10 +3,13 @@ package bracelet;
 import java.util.List;
 
 /**
- * Bracelet interface.
+ * A circular double-linked list for generic data types. Bracelets are capable
+ * of indefinitely looping upon themselves when performing actions that involve
+ * cycling through the Bracelet. This can be done both from "left-to-right" and
+ * "right-to-left".
  *
  * @param <T>
- *            The data type of the user's choosing.
+ *            The type of elements in this bracelet
  *
  * @author David Cooney
  */

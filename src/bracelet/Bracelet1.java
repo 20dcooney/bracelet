@@ -3,7 +3,7 @@ package bracelet;
 /**
  * Implementation of BraceletKernel interface.
  *
- * A circular doubly-linked list.
+ * A circular double-linked list.
  *
  * @param <T>
  *            The type of {@code Bracelet} entries
@@ -13,7 +13,7 @@ package bracelet;
 public class Bracelet1<T> implements BraceletKernel<T> {
 
     /**
-     * Node class for doubly linked list nodes.
+     * Node class for bracelet nodes.
      */
     public final class Node {
 
@@ -23,29 +23,53 @@ public class Bracelet1<T> implements BraceletKernel<T> {
         public T data;
 
         /**
-         * Previous node in doubly linked list, or null.
+         * Previous node in bracelet, or null.
          */
         public Node prev;
 
         /**
-         * Next node in doubly linked list, or null.
+         * Next node in bracelet, or null.
          */
         public Node next;
 
     }
 
+    /**
+     * Smart node that signifies the beginning of the bracelet. {front}'s data
+     * value will always be null.
+     */
     public Node front;
 
+    /**
+     * Smart node that signifies the ending of the bracelet. {end}'s data value
+     * will always be null.
+     */
     public Node end;
 
+    /**
+     * Smart node that acts as a reference point for actions performed on the
+     * bracelet. Actions are performed to the [right-side] of the pointer.
+     *
+     */
     public Node pointer;
 
+    /**
+     * The amount of {@code Object}s stored in the bracelet. The {front}, {end},
+     * and {pointer} smart nodes are not a part of this value.
+     */
     private int length;
 
+    /**
+     * No arguments constructor.
+     */
     public Bracelet1() {
         this.createNewRep();
     }
 
+    /**
+     * Initializes all necessary Nodes and variables for a new representation of
+     * bracelet.
+     */
     private void createNewRep() {
 
         this.front = new Node();
@@ -66,12 +90,6 @@ public class Bracelet1<T> implements BraceletKernel<T> {
 
     @Override
     public void add(T x) {
-
-        //TODO - Fix this assertion
-        /*
-         * assert x.getClass().equals(this.getClass()) :
-         * "Violation of: x is the same type as contained in this";
-         */
 
         Node nodeToAdd = new Node();
         nodeToAdd.data = x;

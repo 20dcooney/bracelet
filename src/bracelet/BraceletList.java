@@ -2,6 +2,15 @@ package bracelet;
 
 import java.util.ArrayList;
 
+/**
+ * A secondary implementation of Bracelet that allows for more flexibility with
+ * adding, removing, and cycling through the bracelet.
+ *
+ * @param <T>
+ *            The type of elements in this bracelet
+ *
+ * @author David Cooney
+ */
 public class BraceletList<T> extends Bracelet1<T> implements Bracelet<T> {
 
     @Override
@@ -188,6 +197,11 @@ public class BraceletList<T> extends Bracelet1<T> implements Bracelet<T> {
 
         for (int i = 0; i < n - 1; i++) {
             this.movePointerRight();
+        }
+
+        //Handling for if the first object in bracelet is the object to be removed.
+        if (this.pointer.next.data == null) {
+            this.movePointerToFront();
         }
 
         T returnObj = this.remove();
