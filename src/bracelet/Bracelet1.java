@@ -94,30 +94,43 @@ public class Bracelet1<T> implements BraceletKernel<T> {
         Node nodeToAdd = new Node();
         nodeToAdd.data = x;
 
-        nodeToAdd.prev = this.pointer;
-        nodeToAdd.next = this.pointer.next;
+        if (this.length() == 0) {
+            nodeToAdd.prev = this.front;
+            nodeToAdd.next = this.end;
 
-        this.pointer.next.prev = nodeToAdd;
-        this.pointer.next = nodeToAdd;
+            this.front.next = nodeToAdd;
+            this.end.prev = nodeToAdd;
 
-        this.pointer = this.pointer.next;
+            this.pointer.next = this.end;
+            this.pointer.prev = nodeToAdd;
+        } else {
+
+            nodeToAdd.prev = this.pointer.prev;
+            nodeToAdd.next = this.pointer.next;
+
+            this.pointer.next.prev = nodeToAdd;
+            this.pointer.next = nodeToAdd;
+            this.pointer.prev.next = nodeToAdd;
+
+            this.pointer = this.pointer.next;
+        }
 
         this.length++;
-
     }
 
     @Override
     public T remove() {
         assert this.length > 0 : "Violation of: |this| > 0";
 
-        //ALERT this is a big fundamental change to the entire Bracelet, ensure all methods work as intended
         if (this.pointer.next.data == null) {
             this.pointer = this.front;
         }
 
         T returnObj = this.pointer.next.data;
 
-        this.pointer.next.next.prev = this.pointer;
+        this.pointer.next.next.prev = this.pointer.prev;
+        this.pointer.prev.next = this.pointer.next.next;
+
         this.pointer.next = this.pointer.next.next;
 
         this.length--;
