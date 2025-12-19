@@ -160,6 +160,22 @@ public class BraceletList<T> extends Bracelet1<T> implements Bracelet<T> {
         return returnObj;
     }
 
+    @Override
+    public T pollPointerPosition() {
+
+        Node storeNode = this.storePosition();
+
+        if (this.pointer.next.data == null) {
+            this.movePointerToFront();
+        }
+
+        T returnObj = this.pointer.next.data;
+
+        this.pointer = storeNode;
+
+        return returnObj;
+    }
+
     private void movePointerToFront() {
 
         this.pointer = this.front;

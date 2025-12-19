@@ -107,6 +107,14 @@ public interface Bracelet<T> extends BraceletKernel<T> {
     T pollEnd();
 
     /**
+     * Determines the element held to the right of {@code pointer} node and
+     * returns it.
+     *
+     * @return [Element to the right of the {@code pointer}]
+     */
+    T pollPointerPosition();
+
+    /**
      * Determines the object held at the {@code pos} position of this and
      * returns it. Begins at index 1.
      *
