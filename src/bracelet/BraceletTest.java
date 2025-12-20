@@ -75,7 +75,7 @@ class BraceletTest {
      */
     @Test
     void testToStringNonEmpty() {
-        String expected = "Items contained in bracelet: this, is, a, test";
+        String expected = "[this, is, a, test]";
 
         assertEquals(expected, this.bracelet.toString());
 
@@ -88,7 +88,7 @@ class BraceletTest {
      */
     @Test
     void testToStringEmpty() {
-        String expected = "This bracelet is currently empty.";
+        String expected = "[]";
 
         this.bracelet.clear();
 

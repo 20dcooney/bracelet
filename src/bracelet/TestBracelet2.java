@@ -1,5 +1,8 @@
 package bracelet;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class TestBracelet2 {
 
     public static void main(String[] args) {
@@ -23,6 +26,20 @@ public class TestBracelet2 {
 
         System.out.println(bracelet.getClass());
 
+        List<Integer> list = new ArrayList<>();
+
+        System.out.println();
+
+        System.out.println("Bracelet toString: " + bracelet.toString());
+        System.out.println("List toString: " + list.toString());
+
+        System.out.println();
+        System.out.println("Flattening Bracelet into an ArrayList");
+        System.out.println();
+
+        list = bracelet.flatten();
+        System.out.println("Bracelet toString: " + bracelet.toString());
+        System.out.println("List toString: " + list.toString());
     }
 
 }

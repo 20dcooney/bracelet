@@ -193,8 +193,9 @@ public class BraceletList<T> extends Bracelet1<T> implements Bracelet<T> {
     @Override
     public String toString() {
 
-        String printString = (this.length() > 0) ? "Items contained in bracelet: "
-                : "This bracelet is currently empty.";
+        String printString = "[";
+
+        Node storeNode = this.storePosition();
 
         this.movePointerToFront();
 
@@ -209,10 +210,14 @@ public class BraceletList<T> extends Bracelet1<T> implements Bracelet<T> {
             this.pointer = this.pointer.next;
 
         }
+
+        printString += "]";
+
+        this.pointer = storeNode;
+
         return printString;
     }
 
-    //TODO - Complete
     @Override
     @SuppressWarnings("unchecked")
     public boolean equals(Object o) {
@@ -231,6 +236,20 @@ public class BraceletList<T> extends Bracelet1<T> implements Bracelet<T> {
         return equal;
     }
 
+    /**
+     * Compares two instances of {@code Bracelet} to check for equality. Two
+     * {@code Bracelet}s are considered equal if they are the same length, and
+     * each element in order from front to back are considered equal using the
+     * {@code equals()} method for their respective element.
+     *
+     * @param thisBracelet
+     *            The bracelet represented by {@code this} instance.
+     * @param o
+     *            The bracelet to compare to {@code this}
+     * 
+     * 
+     * @return Boolean value representing the equality of thisBracelet and o.
+     */
     private boolean compareElements(Bracelet<T> thisBracelet, Bracelet<T> o) {
 
         boolean equal = true;
