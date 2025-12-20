@@ -176,13 +176,15 @@ public class BraceletList<T> extends Bracelet1<T> implements Bracelet<T> {
         return returnObj;
     }
 
-    private void movePointerToFront() {
+    @Override
+    public void movePointerToFront() {
 
         this.pointer = this.front;
 
     }
 
-    private void movePointerToEnd() {
+    @Override
+    public void movePointerToEnd() {
 
         this.pointer = this.end;
 
@@ -208,6 +210,45 @@ public class BraceletList<T> extends Bracelet1<T> implements Bracelet<T> {
 
         }
         return printString;
+    }
+
+    //TODO - Complete
+    @Override
+    @SuppressWarnings("unchecked")
+    public boolean equals(Object o) {
+
+        boolean equal = false;
+
+        if (this == o) {
+            return true;
+        }
+
+        if (this.getClass() == o.getClass()) {
+            //Cast should always successfully complete given getClass() is equal.
+            equal = this.compareElements(this, (Bracelet<T>) o);
+        }
+
+        return equal;
+    }
+
+    private boolean compareElements(Bracelet<T> thisBracelet, Bracelet<T> o) {
+
+        boolean equal = true;
+
+        if (thisBracelet.length() != o.length()) {
+            equal = false;
+        } else {
+            thisBracelet.movePointerToFront();
+            o.movePointerToFront();
+
+            for (int i = 0; i < thisBracelet.length(); i++) {
+                if (!thisBracelet.pollPointerPosition().equals(o.pollPointerPosition())) {
+                    equal = false;
+                }
+            }
+        }
+
+        return equal;
     }
 
     /**
