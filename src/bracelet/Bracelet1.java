@@ -74,6 +74,7 @@ public class Bracelet1<T> implements BraceletKernel<T> {
 
         this.front = new Node();
         this.end = new Node();
+        this.pointer = new Node();
 
         //Links the front and end
         this.front.next = this.end;
@@ -101,20 +102,17 @@ public class Bracelet1<T> implements BraceletKernel<T> {
             this.front.next = nodeToAdd;
             this.end.prev = nodeToAdd;
 
-            this.pointer.next = this.end;
-            this.pointer.prev = nodeToAdd;
+            this.pointer = nodeToAdd;
         } else {
 
-            nodeToAdd.prev = this.pointer.prev;
+            nodeToAdd.prev = this.pointer.prev.next;
             nodeToAdd.next = this.pointer.next;
 
             this.pointer.next.prev = nodeToAdd;
-            this.pointer.next = nodeToAdd;
-            this.pointer.prev.next = nodeToAdd;
+            this.pointer.prev.next.next = nodeToAdd;
 
-            this.pointer = this.pointer.next;
+            this.pointer = nodeToAdd;
         }
-
         this.length++;
     }
 
