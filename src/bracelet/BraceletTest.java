@@ -1,6 +1,7 @@
 package bracelet;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -111,6 +112,20 @@ class BraceletTest {
 
         assertEquals(expected, test);
 
+    }
+
+    @Test
+    void testRemoveThrowsErrorWhenBraceletIsEmpty() {
+
+        String expected = "Violation of: |this| > 0";
+
+        this.bracelet.clear();
+
+        AssertionError e = assertThrows(AssertionError.class,
+                () -> this.bracelet.remove(),
+                "Expecting AssertionError due to this.bracelet being empty during the call of remove()");
+
+        assertEquals(expected, e.getMessage());
     }
 
 }
