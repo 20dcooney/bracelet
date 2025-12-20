@@ -26,4 +26,15 @@ class BraceletTest {
 
     }
 
+    @Test
+    void testClear() {
+
+        Bracelet<String> expected = new BraceletList<>();
+
+        this.bracelet.clear();
+
+        assertEquals(this.bracelet, expected);
+
+    }
+
 }
