@@ -294,9 +294,46 @@ class BraceletTest {
 
     }
 
+    /**
+     * Tests the removeNthNextItem() method. Expects removed element equality
+     * with a pre-made element of the expected output. Expects
+     * {@code this.bracelet} equality to a pre-made Bracelet of the expected
+     * elements. Expects equality of {@code Node} connections in
+     * {@code this.bracelet} and the pre-made Bracelet with the expected
+     * elements, for both the {@code next} and {@code prev] connections.
+     */
     @Test
     void testRemoveNthNextItem() {
-        //TODO - Implement
+
+        final int removalPosition = 15;
+
+        this.expected.add("this");
+        this.expected.add("is");
+        this.expected.add("test");
+
+        String expectedRemovedElement = "a";
+
+        this.bracelet.movePointerToFront();
+        String testRemovedElement = this.bracelet.removeNthNextItem(removalPosition);
+
+        assertEquals(expectedRemovedElement, testRemovedElement);
+        assertEquals(this.expected, this.bracelet);
+
+        this.testNextConnections(this.expected, this.bracelet);
+        this.testPrevConnections(this.expected, this.bracelet);
+    }
+
+    @Test
+    void testRemoveNthNextItemThrowsErrorWhenNIsLessThanZero() {
+
+        String expected = "Violation of: n > 0";
+
+        AssertionError e = assertThrows(AssertionError.class,
+                () -> this.bracelet.removeNthNextItem(-1),
+                "Expecting AssertionError due to an integer less than 0 being provided to removeNthNextItem(int x)");
+
+        assertEquals(expected, e.getMessage());
+
     }
 
 }
