@@ -128,4 +128,77 @@ class BraceletTest {
         assertEquals(expected, e.getMessage());
     }
 
+    /**
+     * Tests the remove() method. Expects removed element equality with a
+     * pre-made element of the expected output. Expects {@code this.bracelet}
+     * equality to a pre-made Bracelet of the expected elements. Expects
+     * equality of {@code Node} connections in {@code this.bracelet} and the
+     * pre-made Bracelet with the expected elements.
+     */
+    @Test
+    void testRemove() {
+
+        final int pointerCount = 2;
+
+        this.expected.add("this");
+        this.expected.add("is");
+        this.expected.add("test");
+
+        String expectedRemovedElement = "a";
+
+        for (int i = 0; i < pointerCount; i++) {
+            this.bracelet.movePointerRight();
+        }
+
+        String testRemovedElement = this.bracelet.remove();
+
+        assertEquals(expectedRemovedElement, testRemovedElement);
+        assertEquals(this.expected, this.bracelet);
+
+        this.bracelet.movePointerToFront();
+        this.expected.movePointerToFront();
+
+        for (int i = 0; i < this.bracelet.length(); i++) {
+            assertEquals(this.expected.pollPointerPosition(),
+                    this.bracelet.pollPointerPosition());
+
+            this.bracelet.movePointerRight();
+            this.expected.movePointerRight();
+        }
+
+    }
+
+    @Test
+    void testPrevConnectionsAfterRemove() {
+
+        final int pointerCount = 2;
+
+        this.expected.add("this");
+        this.expected.add("is");
+        this.expected.add("test");
+
+        String expectedRemovedElement = "a";
+
+        for (int i = 0; i < pointerCount; i++) {
+            this.bracelet.movePointerRight();
+        }
+
+        String testRemovedElement = this.bracelet.remove();
+
+        assertEquals(expectedRemovedElement, testRemovedElement);
+        assertEquals(this.expected, this.bracelet);
+
+        this.bracelet.movePointerToEnd();
+        this.expected.movePointerToEnd();
+
+        for (int i = 0; i < this.bracelet.length(); i++) {
+            assertEquals(this.expected.pollPointerPosition(),
+                    this.bracelet.pollPointerPosition());
+
+            this.bracelet.movePointerLeft();
+            this.expected.movePointerLeft();
+        }
+
+    }
+
 }

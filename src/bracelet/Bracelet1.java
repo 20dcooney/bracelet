@@ -126,10 +126,10 @@ public class Bracelet1<T> implements BraceletKernel<T> {
 
         T returnObj = this.pointer.next.data;
 
-        this.pointer.next.next.prev = this.pointer.prev;
-        this.pointer.prev.next = this.pointer.next.next;
+        this.pointer.prev.next.next = this.pointer.next.next;
+        this.pointer.next.prev = this.pointer.prev.next;
 
-        this.pointer.next = this.pointer.next.next;
+        this.pointer = this.pointer.prev.next;
 
         this.length--;
 
