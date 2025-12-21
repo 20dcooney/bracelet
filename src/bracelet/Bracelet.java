@@ -8,6 +8,21 @@ import java.util.List;
  * cycling through the Bracelet. This can be done both from "left-to-right" and
  * "right-to-left".
  *
+ * <p>
+ * Bracelet does not require elements it contains to be unique. Therefore,
+ * "duplicate" elements are capable of being added to a Bracelet.
+ * </p>
+ *
+ * <p>
+ * Bracelet functions as a series of nodes that contain their designated data,
+ * the identity of the node ahead of it, and the identity of the node behind it.
+ * Bracelet also contains a {@code pointer} node, which is not part of the
+ * double-linked list itself, but tracks a node in the double-linked list. Core
+ * functions such as adding and removing elements to the list are performed
+ * around this {@code pointer} node. The {@code pointer} can be moved through
+ * the list to perform methods at that point in the list.
+ * </p>
+ *
  * @param <T>
  *            The type of elements in this bracelet
  *
