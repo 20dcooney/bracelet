@@ -246,8 +246,8 @@ public class BraceletList<T> extends Bracelet1<T> implements Bracelet<T> {
      *            The bracelet represented by {@code this} instance.
      * @param o
      *            The bracelet to compare to {@code this}
-     * 
-     * 
+     *
+     *
      * @return Boolean value representing the equality of thisBracelet and o.
      */
     private boolean compareElements(Bracelet<T> thisBracelet, Bracelet<T> o) {
@@ -286,6 +286,7 @@ public class BraceletList<T> extends Bracelet1<T> implements Bracelet<T> {
     public T removeNthNextItem(int n) {
 
         assert this.length() > 0 : "Violation of: |this| > 0";
+        assert n > 0 : "Violation of: n > 0";
 
         Node storeNode = this.storePosition();
 

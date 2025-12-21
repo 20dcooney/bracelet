@@ -55,6 +55,11 @@ public interface Bracelet<T> extends BraceletKernel<T> {
     /**
      * Removes requested object from the Bracelet.
      *
+     * {@code Bracelet} allows for duplicate elements to be contained with
+     * itself. When calling upon {@code removeEntry(x)} to remove an element
+     * with multiple appearances in {@code this}, the instance of the element
+     * closest to the front of {@code this} will be removed.
+     *
      * @param x
      *            The object to be removed.
      * @requires [x is in this]
@@ -72,6 +77,7 @@ public interface Bracelet<T> extends BraceletKernel<T> {
      * @param n
      *            The distance from the object to be removed
      * @requires |this| > 0
+     * @requires n > 0
      * @ensures this = [#this with object n spaces away removed]
      * @return [object n spaces away from pointer]
      */
