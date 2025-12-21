@@ -32,11 +32,57 @@ class BraceletTest {
         this.expected = new BraceletList<>();
     }
 
-    @Test
-    void testAddNextAndPrevNodes() {
+    /**
+     * Compares a pre-made {@code Bracelet} with a {@code Bracelet} that has had
+     * its order altered by a method, to ensure that the {@code .next}
+     * connections are equal.
+     *
+     * @param <T>
+     *            The element type of the {@code Bracelet}s
+     * @param expected
+     *            Pre-made Bracelet that the test Bracelet intends to match
+     * @param test
+     *            Bracelet with an order altering method called upon it
+     */
+    private <T> void testNextConnections(Bracelet<T> expected, Bracelet<T> test) {
 
-        assertEquals(this.bracelet.pollPointerPosition(), "this");
+        expected.movePointerToFront();
+        test.movePointerToFront();
 
+        for (int i = 0; i < this.bracelet.length(); i++) {
+            assertEquals(this.expected.pollPointerPosition(),
+                    this.bracelet.pollPointerPosition());
+
+            this.bracelet.movePointerRight();
+            this.expected.movePointerRight();
+        }
+
+    }
+
+    /**
+     * Compares a pre-made {@code Bracelet} with a {@code Bracelet} that has had
+     * its order altered by a method, to ensure that the {@code .prev}
+     * connections are equal.
+     *
+     * @param <T>
+     *            The element type of the {@code Bracelet}s
+     * @param expected
+     *            Pre-made Bracelet that the test Bracelet intends to match
+     * @param test
+     *            Bracelet with an order altering method called upon it
+     */
+    private <T> void testPrevConnections(Bracelet<T> expected, Bracelet<T> test) {
+
+        expected.movePointerToEnd();
+        test.movePointerToEnd();
+
+        for (int i = 0; i < this.bracelet.length(); i++) {
+            assertEquals(this.expected.pollPointerPosition(),
+                    this.bracelet.pollPointerPosition());
+
+            this.bracelet.movePointerLeft();
+            this.expected.movePointerLeft();
+        }
     }
 
     /**
@@ -64,6 +110,7 @@ class BraceletTest {
 
         this.bracelet.clear();
 
+        assertEquals(this.expected.length(), this.bracelet.length());
         assertEquals(this.expected, this.bracelet);
 
     }
@@ -133,7 +180,8 @@ class BraceletTest {
      * pre-made element of the expected output. Expects {@code this.bracelet}
      * equality to a pre-made Bracelet of the expected elements. Expects
      * equality of {@code Node} connections in {@code this.bracelet} and the
-     * pre-made Bracelet with the expected elements.
+     * pre-made Bracelet with the expected elements, for both the {@code next}
+     * and {@code prev] connections.
      */
     @Test
     void testRemove() {
@@ -155,50 +203,100 @@ class BraceletTest {
         assertEquals(expectedRemovedElement, testRemovedElement);
         assertEquals(this.expected, this.bracelet);
 
-        this.bracelet.movePointerToFront();
-        this.expected.movePointerToFront();
-
-        for (int i = 0; i < this.bracelet.length(); i++) {
-            assertEquals(this.expected.pollPointerPosition(),
-                    this.bracelet.pollPointerPosition());
-
-            this.bracelet.movePointerRight();
-            this.expected.movePointerRight();
-        }
+        this.testNextConnections(this.expected, this.bracelet);
+        this.testPrevConnections(this.expected, this.bracelet);
 
     }
 
+    /**
+     * Tests the removeFromFront() method. Expects removed element equality with
+     * a pre-made element of the expected output. Expects {@code this.bracelet}
+     * equality to a pre-made Bracelet of the expected elements. Expects
+     * equality of {@code Node} connections in {@code this.bracelet} and the
+     * pre-made Bracelet with the expected elements, for both the {@code next}
+     * and {@code prev] connections.
+     */
     @Test
-    void testPrevConnectionsAfterRemove() {
+    void testRemoveFromFront() {
 
-        final int pointerCount = 2;
-
-        this.expected.add("this");
         this.expected.add("is");
+        this.expected.add("a");
         this.expected.add("test");
 
-        String expectedRemovedElement = "a";
+        String expectedRemovedElement = "this";
 
-        for (int i = 0; i < pointerCount; i++) {
-            this.bracelet.movePointerRight();
-        }
-
-        String testRemovedElement = this.bracelet.remove();
+        String testRemovedElement = this.bracelet.removeFromFront();
 
         assertEquals(expectedRemovedElement, testRemovedElement);
         assertEquals(this.expected, this.bracelet);
 
-        this.bracelet.movePointerToEnd();
-        this.expected.movePointerToEnd();
+        this.testNextConnections(this.expected, this.bracelet);
+        this.testPrevConnections(this.expected, this.bracelet);
 
-        for (int i = 0; i < this.bracelet.length(); i++) {
-            assertEquals(this.expected.pollPointerPosition(),
-                    this.bracelet.pollPointerPosition());
+    }
 
-            this.bracelet.movePointerLeft();
-            this.expected.movePointerLeft();
-        }
+    /**
+     * Tests the removeFromEnd() method. Expects removed element equality with a
+     * pre-made element of the expected output. Expects {@code this.bracelet}
+     * equality to a pre-made Bracelet of the expected elements. Expects
+     * equality of {@code Node} connections in {@code this.bracelet} and the
+     * pre-made Bracelet with the expected elements, for both the {@code next}
+     * and {@code prev] connections.
+     */
+    @Test
+    void testRemoveFromEnd() {
 
+        this.expected.add("this");
+        this.expected.add("is");
+        this.expected.add("a");
+
+        String expectedRemovedElement = "test";
+
+        String testRemovedElement = this.bracelet.removeFromEnd();
+
+        assertEquals(expectedRemovedElement, testRemovedElement);
+        assertEquals(this.expected, this.bracelet);
+
+        this.testNextConnections(this.expected, this.bracelet);
+        this.testPrevConnections(this.expected, this.bracelet);
+
+    }
+
+    @Test
+    void testRemoveEntry() {
+
+        this.expected.add("this");
+        this.expected.add("a");
+        this.expected.add("test");
+
+        String expectedRemovedElement = "is";
+
+        String testRemovedElement = this.bracelet.removeEntry("is");
+
+        assertEquals(expectedRemovedElement, testRemovedElement);
+        assertEquals(this.expected, this.bracelet);
+
+        this.testNextConnections(this.expected, this.bracelet);
+        this.testPrevConnections(this.expected, this.bracelet);
+
+    }
+
+    @Test
+    void testRemoveEntryThrowsErrorWhenRequestedElementIsNotInBracelet() {
+
+        String expected = "Violation of: x is in this";
+
+        AssertionError e = assertThrows(AssertionError.class,
+                () -> this.bracelet.removeEntry("this element does not exist"),
+                "Expecting AssertionError due to this.bracelet not containing the requested element given to removeEntry(T x)");
+
+        assertEquals(expected, e.getMessage());
+
+    }
+
+    @Test
+    void testRemoveNthNextItem() {
+        //TODO - Implement
     }
 
 }
