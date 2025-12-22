@@ -40,6 +40,8 @@ public class TestBracelet2 {
         list = bracelet.flatten();
         System.out.println("Bracelet toString: " + bracelet.toString());
         System.out.println("List toString: " + list.toString());
+
+        System.out.print(bracelet.hashCode());
     }
 
 }
