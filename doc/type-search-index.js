@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"bracelet","l":"Bracelet"},{"p":"bracelet","l":"Bracelet1"},{"p":"bracelet","l":"BraceletKernel"},{"p":"bracelet","l":"BraceletList"},{"p":"bracelet","l":"Bracelet1.Node"}];updateSearchResults();
