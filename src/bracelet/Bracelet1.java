@@ -55,7 +55,7 @@ public class Bracelet1<T> implements BraceletKernel<T> {
 
     /**
      * The amount of {@code Object}s stored in the bracelet. The {front}, {end},
-     * and {pointer} smart nodes are not a part of this value.
+     * and {@code pointer} smart nodes are not a part of this value.
      */
     private int length;
 

@@ -130,13 +130,6 @@ public class BraceletList<T> extends Bracelet1<T> implements Bracelet<T> {
 
     }
 
-    /*
-     * TODO - Change the name of current "pollPosition" to "pollNthPosition".
-     *
-     * Create a new "pollPosition" that polls the position to the right of the
-     * pointer.
-     */
-
     @Override
     public T pollPosition(int pos) {
 

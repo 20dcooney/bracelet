@@ -33,17 +33,27 @@ public interface Bracelet<T> extends BraceletKernel<T> {
     /**
      * Adds an object to the front of this.
      *
+     *
+     * <p>
+     * Ensures this = x * #this
+     * </p>
+     *
      * @param x
-     *            The object to be added
-     * @ensures this = x * #this
+     *            The object to be added.
+     *
      */
     void addToFront(T x);
 
     /**
      * Removes an object from the front of this.
      *
-     * @requires |this| > 0
-     * @ensures this = [#this with front object removed]
+     * <p>
+     * Requires |this| > 0
+     * </p>
+     * <p>
+     *
+     * Ensures this = [#this with front object removed]
+     * </p>
      *
      * @return [front object]
      */
@@ -51,18 +61,26 @@ public interface Bracelet<T> extends BraceletKernel<T> {
 
     /**
      * Adds an object to the end of this.
+     * <p>
+     * Ensures this = #this * x
+     * </p>
      *
      * @param x
      *            The object to be added
-     * @ensures this = #this * x
+     *
      */
     void addToEnd(T x);
 
     /**
      * Removes an object from the end of this.
      *
-     * @requires |this| > 0
-     * @ensures this = [#this with end object removed]
+     * <p>
+     * Requires |this| is greater than 0
+     * </p>
+     * <p>
+     * Ensures this = [#this with end object removed]
+     * </p>
+     *
      * @return [end object]
      */
     T removeFromEnd();
@@ -75,13 +93,21 @@ public interface Bracelet<T> extends BraceletKernel<T> {
      * with multiple appearances in {@code this}, the instance of the element
      * closest to the front of {@code this} will be removed.
      *
+     * <p>
+     * Requires [x is in this]
+     * </p>
+     * <p>
+     * Requires |this| is greater than 0
+     * </p>
+     * <p>
+     * Ensures this = [#this with x removed]
+     * </p>
+     *
      * @param x
      *            The object to be removed.
-     * @requires [x is in this]
-     * @requires |this| > 0
-     * @ensures this = [#this with x removed]
      *
-     * @returns [Object data in the given node]
+     *
+     * @return [Object data in the given node]
      */
     T removeEntry(T x);
 
@@ -89,11 +115,18 @@ public interface Bracelet<T> extends BraceletKernel<T> {
      * Removes the object that is {@code n} objects away from the pointer's
      * current position. Capable of looping through the full {@code bracelet}.
      *
+     * <p>
+     * Requires |this| is greater than 0
+     * </p>
+     * <p>
+     * Requires n is greater than 0
+     * </p>
+     * <p>
+     * Ensures this = [#this with object n spaces away removed]
+     * </p>
+     *
      * @param n
      *            The distance from the object to be removed
-     * @requires |this| > 0
-     * @requires n > 0
-     * @ensures this = [#this with object n spaces away removed]
      * @return [object n spaces away from pointer]
      */
     T removeNthNextItem(int n);
@@ -102,9 +135,16 @@ public interface Bracelet<T> extends BraceletKernel<T> {
      * Converts the bracelet into an {@code ArrayList<T>}, where T is the object
      * type of the bracelet objects.
      *
-     * @clears this
-     * @ensures this = <>
-     * @ensures {@code ArrayList<T>} contains all objects from #this
+     * <p>
+     * Clears this
+     * </p>
+     * <p>
+     * Ensures this is empty
+     * </p>
+     * <p>
+     * Ensures {@code ArrayList<T>} contains all objects from #this
+     * </p>
+     *
      * @return [ArrayList containing objects from #this]
      */
     List<T> flatten();
@@ -112,8 +152,13 @@ public interface Bracelet<T> extends BraceletKernel<T> {
     /**
      * Determines the object held at the front of this and returns it.
      *
-     * @restores this
-     * @ensures this = #this
+     * <p>
+     * Restores this
+     * </p>
+     * <p>
+     * Ensures this = #this
+     * </p>
+     *
      * @return [Object at the front of this]
      */
     T pollFront();
@@ -121,8 +166,13 @@ public interface Bracelet<T> extends BraceletKernel<T> {
     /**
      * Determines the object held at the end of this and returns it.
      *
-     * @restores this
-     * @ensures this = #this
+     * <p>
+     * Restores this
+     * </p>
+     * <p>
+     * Ensures this = #this
+     * </p>
+     *
      * @return [Object at the end of this]
      */
     T pollEnd();
@@ -138,18 +188,30 @@ public interface Bracelet<T> extends BraceletKernel<T> {
     /**
      * Determines the object held at the {@code pos} position of this and
      * returns it. Begins at index 1.
+     * <p>
+     * Restores this
+     * </p>
+     * <p>
+     * Requires pos is less than or equal to |this| Ensures this = #this
+     * </p>
      *
      * @param pos
      *            The position to poll from
-     * @restores this
-     * @requires pos <= |this|
-     * @ensures this = #this
+     *
      * @return [Object at the end of this]
      */
     T pollPosition(int pos);
 
+    /**
+     * Moves the current pointer position to the Front node. The element to the
+     * right of the pointer is the first element in the bracelet.
+     */
     void movePointerToFront();
 
+    /**
+     * Moves the current pointer position to the End node. The element to the
+     * left of the pointer is the last element in the bracelet.
+     */
     void movePointerToEnd();
 
 }
