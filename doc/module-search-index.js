@@ -1,1 +1,1 @@
-moduleSearchIndex = [{"l":"bracelet"}];updateSearchResults();
+moduleSearchIndex = [];updateSearchResults();
